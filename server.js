@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+const process.env.PORT || 200;
 
 // JSONリクエストを扱えるようにする
 app.use(express.json());
