@@ -1,3 +1,4 @@
+const fs = require('fs'); 
 const express = require('express');
 const axios = require('axios');
 const app = express();
@@ -30,6 +31,12 @@ app.post('/webhook', (req, res) => {
         ]
       };
 
+      fs.writeFileSync('message.json', JSON.stringify({
+  timestamp: Date.now(),
+  message: userMessage
+}));
+console.log('📝 通知用のメッセージを保存しました！');
+      
       // LINEのMessaging APIを使ってメッセージを返信
       try {
         await axios.post('https://api.line.me/v2/bot/message/reply', replyMessage, {
